@@ -3,23 +3,39 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-class ItemList extends React.Component {
+class App extends React.Component {
   state = {
     items: []
   };
 
   nextId = 0;
 
-  addToItems = () => {
-    return { id: this.nextId++, value: Math.random() };
-  };
+  nextItemId = 0;
+  makeItem() {
+    return {
+      id: this.nextItemId++,
+      value: Math.random()
+    };
+  }
 
   addItemImmutably = () => {
-    this.setState({ items: [...this.state.items, this.addToItems()] });
+    this.setState({
+      items: [...this.state.items, this.makeItem()]
+    });
   };
+
   render() {
-    return <div />;
+    return (
+      <div>
+        {" "}
+        <button onClick={this.addItemImmutably()}>
+          {" "}
+          Press Me To Increase List{" "}
+        </button>
+        {}
+      </div>
+    );
   }
 }
 const rootElement = document.getElementById("root");
-ReactDOM.render(<ItemList />, rootElement);
+ReactDOM.render(<App />, rootElement);
