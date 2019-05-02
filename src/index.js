@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import ListItem from "./item-list";
 import "./styles.css";
+import ItemList from "./item-list";
 
 class App extends React.Component {
   state = {
     items: []
   };
 
-  nextId = 0;
-
   nextItemId = 0;
+
   makeItem() {
     return {
       id: this.nextItemId++,
@@ -18,7 +18,7 @@ class App extends React.Component {
     };
   }
 
-  addItemImmutably = () => {
+  addItem = () => {
     this.setState({
       items: [...this.state.items, this.makeItem()]
     });
@@ -27,12 +27,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {" "}
-        <button onClick={this.addItemImmutably()}>
-          {" "}
-          Press Me To Increase List{" "}
-        </button>
-        {}
+        <button onClick={this.addItem}>Check Me Out</button>
+        <ItemList items={this.state.items} />
       </div>
     );
   }
